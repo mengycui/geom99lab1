@@ -66,22 +66,22 @@
 
 
         ];
-
-      marker = new google.maps.Marker({
-        map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        position: { lat: location.lat, lng: location.lng },
+        locations.forEach(location => {
+          let marker = new google.maps.Marker({
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              position: { lat: location.lat, lng: location.lng }
           });
-        marker.addListener("click", toggleBounce);
-}
-    function toggleBounce() {
-      if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-      } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-      }
-    }
+
+        marker.addListener("click", () => {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+          });
+         });
             // const markers = locations.map(location => {
         //   return new google.maps.Marker({
         //     position: { lat: location.lat, lng: location.lng },
