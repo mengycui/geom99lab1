@@ -92,8 +92,16 @@
           return new google.maps.Marker({
             position: { lat: location.lat, lng: location.lng },
             label: location.magnitude.toString(),
-            });
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10, 
+                fillColor: 'white',
+                fillOpacity: 1,
+                strokeWeight: 0
+            }
           });
+        });
+
 
         new MarkerClusterer(map, markers, {
           imagePath:
