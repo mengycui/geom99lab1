@@ -16,22 +16,13 @@
       let map;
 
       function initMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 6, 
-          center: { lat: 55.05017, lng: -128.51347 }, 
-        });
-        const markers = locations.map((location, i) => {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length],
-          });
-        });
-
-        new MarkerClusterer(map, markers, {
-          imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        });
+        map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6, 
+        center: { lat: 55.05017, lng: -128.51347 }, 
+         });
 
         const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
         const locations = [{ lat: 49.758123, lng: -92.65349},
           { lat: 45.442046, lng: -78.820583},
           { lat: 48.17812017, lng: -90.22694426},
@@ -149,8 +140,17 @@
           { lat: 51.104, lng: -94.288},
         ];
 
+        const markers = locations.map((location, i) => {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length],
+             });
+        });
 
-      }
+        new MarkerClusterer(map, markers, {
+        imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+          });
+         }
     </script>
   </head>
   <body>
