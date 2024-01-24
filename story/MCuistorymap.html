@@ -12,7 +12,7 @@
         padding: 0;
       }
     </style>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <!-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> -->
     <script>
       let map;
 
@@ -24,16 +24,13 @@
 
         const locations = [{ lat: 49.525, lng: -126.964, magnitude:"2.2 ML"},
           { lat: 48.494, lng: -123.413, magnitude:"0.8 ML"},
-          { lat: 50.57, lng: -130.24, magnitude:"3.6 Mw"},
           { lat: 48.829, lng: -125.727, magnitude:"2.1 ML"},
           { lat: 47.607, lng: -121.81, magnitude:"2.2 ML"},
           { lat: 47.459, lng: -122.355, magnitude:"2.6 ML"},
-          { lat: 49.001, lng: -128.583, magnitude:"3.4 Mw"},
           { lat: 48.25, lng: -124.843, magnitude:"2.0 ML"},
           { lat: 48.235, lng: -124.87, magnitude:"1.9 ML"},
           { lat: 48.194, lng: -124.888, magnitude:"1.9 ML"},
           { lat: 47.819, lng: -122.739, magnitude:"1.9 ML"},
-          { lat: 50.535, lng: -130.227, magnitude:"3.4 Mw"},
           { lat: 48.482, lng: -123.469, magnitude:"0.5 ML"},
           { lat: 49.95, lng: -127.847, magnitude:"1.6 ML"},
           { lat: 48.221, lng: -122.745, magnitude:"3.1 ML"},
@@ -43,43 +40,25 @@
           { lat: 48.633, lng: -124.885, magnitude:"1.1 ML"},
           { lat: 48.247, lng: -124.84, magnitude:"1.6 ML"},
           { lat: 48.228, lng: -124.865, magnitude:"2.9 ML"},
-          { lat: 49.217, lng: -127.847, magnitude:"2.8 Mw"},
-          { lat: 48.75, lng: -128.885, magnitude:"3.1 Mw"},
           { lat: 49.735, lng: -123.584, magnitude:"1.7 ML"},
           { lat: 48.106, lng: -125.078, magnitude:"1.6 ML"},
           { lat: 47.812, lng: -123.21, magnitude:"2.4 ML"},
-          { lat: 50.535, lng: -130.353, magnitude:"2.9 Mw"},
           { lat: 49.463, lng: -126.931, magnitude:"1.6 ML"},
           { lat: 48.003, lng: -123.208, magnitude:"3.2 ML"},
-          { lat: 50.569, lng: -130.334, magnitude:"2.9 Mw"},
-          { lat: 49.165, lng: -128.478, magnitude:"2.7 Mw"},
           { lat: 48.697, lng: -123.222, magnitude:"1.1 ML"},
           { lat: 48.861, lng: -122.401, magnitude:"1.6 ML"},
-          { lat: 49.574, lng: -127.826, magnitude:"2.4 Mw"},
-          { lat: 50.46, lng: -130.307, magnitude:"2.9 Mw"},
           { lat: 49.71, lng: -124.536, magnitude:"1.7 ML"},
           { lat: 48.511, lng: -123.708, magnitude:"1.0 ML"},
-          { lat: 50.551, lng: -130.289, magnitude:"2.9 Mw"},
           { lat: 49.237, lng: -123.626, magnitude:"1.7 ML"},
           { lat: 50.477, lng: -129.102, magnitude:"2.4 ML"},
           { lat: 48.782, lng: -121.888, magnitude:"2.1 ML"},
-          { lat: 50.716, lng: -130.43, magnitude:"3.7 Mw"},
           { lat: 48.629, lng: -123.042, magnitude:"1.9 ML"},
-          { lat: 50.196, lng: -129.632, magnitude:"3.5 Mw"},
-          { lat: 50.637, lng: -130.428, magnitude:"4.8 Mw"},
           { lat: 49.638, lng: -127.022, magnitude:"1.5 ML"},
-          { lat: 48.793, lng: -129.07, magnitude:"3.5 Mw"},
-          { lat: 50.569, lng: -130.324, magnitude:"3.6 Mw"},
           { lat: 48.738, lng: -121.827, magnitude:"2.1 ML"},
           { lat: 48.446, lng: -122.279, magnitude:"1.9 ML"},
           { lat: 48.492, lng: -122.51, magnitude:"1.7 ML"},
           { lat: 49.334, lng: -123.956, magnitude:"2.0 ML"},
-          { lat: 50.487, lng: -130.155, magnitude:"3.9 Mw"},
-          { lat: 50.211, lng: -130.033, magnitude:"3.3 Mw"},
           { lat: 48.129, lng: -124.615, magnitude:"1.7 ML"},
-          { lat: 50.541, lng: -130.271, magnitude:"3.8 Mw"},
-          { lat: 49.89, lng: -130.06, magnitude:"3.1 Mw"},
-          { lat: 50.966, lng: -130.394, magnitude:"3.1 Mw"},
           { lat: 48.225, lng: -124.878, magnitude:"1.6 ML"},
           { lat: 47.983, lng: -122.4, magnitude:"1.9 ML"},
           { lat: 49.706, lng: -123.575, magnitude:"1.4 ML"},
@@ -88,28 +67,42 @@
 
         ];
 
-
-        const markers = locations.map(location => {
-          return new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            label: location.magnitude.toString(),
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 20, 
-                fillColor: 'white',
-                fillOpacity: 1,
-                strokeWeight: 0
-            }
+      marker = new google.maps.Marker({
+        map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        pposition: { lat: location.lat, lng: location.lng },
           });
-        });
+        marker.addListener("click", toggleBounce);
+}
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
+            // const markers = locations.map(location => {
+        //   return new google.maps.Marker({
+        //     position: { lat: location.lat, lng: location.lng },
+        //     label: location.magnitude.toString(),
+        //     icon: {
+        //         path: google.maps.SymbolPath.CIRCLE,
+        //         scale: 20, 
+        //         fillColor: 'white',
+        //         fillOpacity: 1,
+        //         strokeWeight: 0
+        //     }
+        //   });
+        // });
 
 
-        new MarkerClusterer(map, markers, {
-          imagePath:
-          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-  });
-         }
-    </script>
+  //       new MarkerClusterer(map, markers, {
+  //         imagePath:
+  //         "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  // });
+  //        }
+  //   </script>
   </head>
   <body>
     <div id="map"></div>
