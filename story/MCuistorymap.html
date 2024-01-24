@@ -12,7 +12,7 @@
         padding: 0;
       }
     </style>
-    <!-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> -->
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script>
       let map;
 
@@ -88,38 +88,26 @@
 
         ];
 
-        earthquakeData.forEach(earthquake => {
-          new google.maps.Marker({
-              position: { lat: earthquake.lat, lng: earthquake.lng },
-              map: map,
-              icon: {
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: earthquake.magnitude * 2, 
-                  fillColor: 'red',
-                  fillOpacity: 0.5,
-                  strokeWeight: 0
-              }
+
+        const markers = locations.map(location => {
+          return new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            label: location.magnitude.toString(),
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10, 
+                fillColor: 'white',
+                fillOpacity: 1,
+                strokeWeight: 0
+            }
           });
         });
-        // const markers = locations.map(location => {
-        //   return new google.maps.Marker({
-        //     position: { lat: location.lat, lng: location.lng },
-        //     label: location.magnitude.toString(),
-        //     icon: {
-        //         path: google.maps.SymbolPath.CIRCLE,
-        //         scale: 10, 
-        //         fillColor: 'white',
-        //         fillOpacity: 1,
-        //         strokeWeight: 0
-        //     }
-        //   });
-        // });
 
 
-  //       new MarkerClusterer(map, markers, {
-  //         imagePath:
-  //         "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-  // });
+        new MarkerClusterer(map, markers, {
+          imagePath:
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  });
          }
     </script>
   </head>
