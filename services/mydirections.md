@@ -7,11 +7,8 @@ Be creative and use multiple parameters from the API documentation to earn a top
 > Tip: Can't make changes? GitHub previews MD documents by default (read-only). Start editing to make the changes for your URL and JSON response below
 
 ## Directions URL
-https://maps.googleapis.com/maps/api/directions/json?origin=place_id:ChIJFbOnLNpGK4gRUygqzTiKkhI&destination=place_id:ChIJt6A4HTybK4gRxxNATeWZ648&waypoints=place_id:ChIJA_JaE-NDK4gRkvS5ZogWPHE&key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE
-```
+https://maps.googleapis.com/maps/api/directions/json?origin=place_id:ChIJFbOnLNpGK4gRUygqzTiKkhI&destination=place_id:ChIJt6A4HTybK4gRxxNATeWZ648&waypoints=place_id:ChIJA_JaE-NDK4gRkvS5ZogWPHE&key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE&avoid=tolls&mode=driving&units=metric
 
-)
-)
 ```
 
 Copy/paste the JSON results and save them into the empty file ```mydirections.json``` in this repository
