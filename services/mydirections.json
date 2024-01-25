@@ -3,7 +3,6 @@
    [
       {
          "geocoder_status" : "OK",
-         "partial_match" : true,
          "place_id" : "ChIJFbOnLNpGK4gRUygqzTiKkhI",
          "types" : 
          [
@@ -15,7 +14,6 @@
       },
       {
          "geocoder_status" : "OK",
-         "partial_match" : true,
          "place_id" : "ChIJA_JaE-NDK4gRkvS5ZogWPHE",
          "types" : 
          [
