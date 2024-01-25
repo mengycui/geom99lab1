@@ -104,20 +104,18 @@
           });
 
           let infoWindow = new google.maps.InfoWindow({
-          content: `<h3>Magnitude: ${location.magnitude}</h3>`
-        });
-
-        marker.addListener("click", () => {
-            if (marker.getAnimation() !== null) {
-                marker.setAnimation(null);
-            } else {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-            }
+              content: `<h3>Magnitude: ${location.magnitude}</h3>`
           });
-         });
-
-        }
-
+          marker.addListener("click", () => {
+              infoWindow.open(map, marker);
+              if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+              } else {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
+              }
+          });
+      });
+    }
         </script> 
   </head>
 
