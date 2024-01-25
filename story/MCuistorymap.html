@@ -1,11 +1,13 @@
-<!-- Reference for marker animation: https://developers.google.com/maps/documentation/javascript/examples/marker-animations -->
-<!-- Reference for inforWindowL https://github.com/googlemaps/js-samples/blob/main/samples/infowindow-simple/index.ts -->
-<!-- Source of earthquake data: https://earthquakescanada.nrcan.gc.ca/recent/maps-cartes/index-en.php?tpl_region=swbc#events -->
+
+
+
 <!-- Author: Mengyuan Cui -->
 <!DOCTYPE html>
 <html>
   <head>
     <title>Recent Earthquake Events in Southwestern British Columbia</title>
+
+  <!-- CSS of the webpage -->
     <style>
       #map {
         height: 100%;
@@ -52,6 +54,7 @@
         }
     </style>
 
+<!-- Initiate map with zoom in to southwestern British Columbia -->
     <script>
       let map;
       let marker;
@@ -60,6 +63,8 @@
         zoom: 7, 
         center: { lat: 49.558377, lng: -124.50702 }, 
          });
+
+// Earthquake data retrieved from EarthquakeCanada: https://earthquakescanada.nrcan.gc.ca/recent/maps-cartes/index-en.php?tpl_region=swbc#events
 
         const locations = [{ lat: 49.525, lng: -126.964, magnitude:"2.2 ML"},
           { lat: 48.494, lng: -123.413, magnitude:"0.8 ML"},
@@ -105,6 +110,10 @@
 
 
         ];
+
+        // Add marker based on longitude and latitude data, make it non-draggable 
+        // Reference for marker animation: https://developers.google.com/maps/documentation/javascript/examples/marker-animations 
+
         locations.forEach(location => {
           let marker = new google.maps.Marker({
               map: map,
@@ -112,7 +121,8 @@
               animation: google.maps.Animation.DROP,
               position: { lat: location.lat, lng: location.lng }
           });
-
+          //Add infoWindow to show the magnitude data for each earthquake event
+          //Reference for inforWindowL https://github.com/googlemaps/js-samples/blob/main/samples/infowindow-simple/index.ts 
           let infoWindow = new google.maps.InfoWindow({
               content: `<h3>Magnitude: ${location.magnitude}</h3>`
           });
